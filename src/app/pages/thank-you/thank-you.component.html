@@ -1,0 +1,41 @@
+<div [class.theme-kairos]="project?.slug === 'kairos'">
+  <app-site-header [brand]="project ? project.name.toUpperCase() : ''" ctaLabel="Contact us" />
+
+  <main id="top" class="thanks">
+    @if (project) {
+      <img class="thanks__bg" [src]="project.image" alt="" aria-hidden="true" />
+    }
+
+    <section id="contact" class="container">
+      <div class="thanks__card glass">
+        <svg class="thanks__check hero__anim" style="--d: 0.15s" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" />
+          <path d="M20 33l8 8 16-17" />
+        </svg>
+
+        <p class="eyebrow hero__anim" style="--d: 0.3s">Enquiry received</p>
+        <h1 class="thanks__title hero__anim" style="--d: 0.4s">
+          Thank you{{ name ? ', ' + name : '' }}.
+        </h1>
+        <p class="thanks__lead hero__anim" style="--d: 0.5s">
+          Your interest in {{ project ? project.name : 'Kurra Infra' }} means a lot to us. A member of our team will
+          call you shortly. We're available from 9 AM to 9 PM.
+        </p>
+
+        <div class="thanks__actions hero__anim" style="--d: 0.65s">
+          @if (project) {
+            <a class="btn btn--accent" [routerLink]="['/', project.slug]">Back to {{ project.name }}</a>
+          }
+          <a class="btn" [class.btn--accent]="!project" [class.btn--glass]="project" routerLink="/">Explore all projects</a>
+        </div>
+
+        <p class="thanks__alt hero__anim" style="--d: 0.8s">
+          Can't wait? Call <a [href]="'tel:' + phoneLink">{{ phone }}</a> or
+          <a [href]="whatsappHref" target="_blank" rel="noopener">message us on WhatsApp</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <app-site-footer [brand]="project ? project.name.toUpperCase() : ''" [project]="project?.name ?? ''" [showEnquiry]="false" />
+</div>

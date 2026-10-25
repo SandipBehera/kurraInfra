@@ -1,6 +1,8 @@
-import { Component, input, model } from '@angular/core';
+import { Component, inject, input, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { whatsappLink } from '../data/company';
+import { HttpServiceService } from '../http-service.service';
+import { Router } from '@angular/router';
 
 /**
  * Enquiry form. There is no backend yet, so a submitted enquiry opens WhatsApp
@@ -39,23 +41,33 @@ import { whatsappLink } from '../data/company';
   `,
 })
 export class EnquiryFormComponent {
+  private leads = inject(HttpServiceService);
+  private router = inject(Router);
   readonly project = input.required<string>();
   readonly unitSizes = input<string[]>([]);
   readonly submitLabel = input('Enquire now');
   readonly unit = model('');
-
+   errors = signal<Record<string, string>>({});
   name = '';
   phone = '';
   email = '';
 
   send(): void {
-    const lines = [
-      `Hi, I am interested in ${this.project()} by Kurra Infra.`,
-      `Name: ${this.name}`,
-      `Phone: ${this.phone}`,
-      this.email && `Email: ${this.email}`,
-      this.unit() && `Preferred unit: ${this.unit()}`,
-    ].filter(Boolean);
-    window.open(whatsappLink(lines.join('\n')), '_blank', 'noopener');
+    const lead = {
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+      projectName: this.project()
+    };
+
+    this.leads.formSubmit(lead).subscribe({
+      next: () => {
+        this.router.navigate(['/thankyou'], { state: { name: lead.name, project: lead.projectName } });
+      },
+      error: (err: unknown) => {
+        console.error('Form submission failed:', err);
+        this.errors.set({ form: 'Something went wrong. Please try again or call us.' });
+      },
+    });
   }
 }

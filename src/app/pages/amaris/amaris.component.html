@@ -1,0 +1,270 @@
+<app-site-header brand="AMARIS" by="by Kurra Infra" [links]="navLinks" />
+
+<main id="top">
+  <!-- Hero -->
+  <section class="hero">
+    <video
+      class="hero__video"
+      src="videos/amaris_hero.mp4"
+      poster="videos/amaris_hero_poster.webp"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      tabindex="-1"
+      [muted]="true"
+    ></video>
+    <div class="hero__shade"></div>
+
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow hero__anim" style="--d: 0.2s">Financial District · Nanakramguda</p>
+        <h1 class="hero__title hero__anim" style="--d: 0.35s">
+          Ultra-luxury <em>4 BHK</em> residences, built for quiet luxury.
+        </h1>
+        <p class="hero__lead hero__anim" style="--d: 0.5s">
+          Two G+50 towers on 3.65 acres. Arrive, absorb and adore.
+        </p>
+        <div class="hero__actions hero__anim" style="--d: 0.65s">
+          <a class="btn btn--accent" href="#residences" (click)="scrollTo('residences', $event)">Explore residences</a>
+          <a class="btn btn--glass" href="#overview" (click)="scrollTo('overview', $event)">Discover Amaris</a>
+        </div>
+      </div>
+
+      <app-enquiry-form class="hero__anim" style="--d: 0.8s" project="Amaris" [unitSizes]="unitSizes">
+        <p class="enquiry__price"><span>Starting from</span> ₹7.35 Cr<sup>*</sup></p>
+      </app-enquiry-form>
+    </div>
+
+    <a class="hero__scroll" href="#overview" (click)="scrollTo('overview', $event)" aria-label="Scroll to overview">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats" aria-label="Project at a glance">
+    <div class="container stats__grid">
+      @for (stat of stats; track stat.label; let i = $index) {
+        <div class="stat glass" appReveal [revealDelay]="i * 70">
+          <p class="stat__value">
+            {{ stat.prefix }}<span [appCountUp]="stat.value" [decimals]="stat.decimals ?? 0"></span>{{ stat.suffix }}
+          </p>
+          <p class="stat__label">{{ stat.label }}</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview" class="section">
+    <div class="container split">
+      <div class="split__media" appReveal>
+        <img src="images/master_img.jpeg" alt="Twin towers of Amaris rising over the Financial District" loading="lazy" />
+      </div>
+      <div class="split__copy" appReveal [revealDelay]="120">
+        <p class="eyebrow">The project</p>
+        <h2 class="section__title">A private address in the heart of the city.</h2>
+        <p>
+          Amaris is two G+50 towers on 3.65 acres, set in a traffic-free, landscaped environment.
+          At its centre is an exclusive clubhouse, and every residence is designed around privacy, light and space.
+        </p>
+        <div class="tower-cards">
+          <div class="tower glass">
+            <p class="tower__name">Tower A</p>
+            <p class="tower__size">7,731 – 9,495 sq ft</p>
+            <p class="tower__note">Private plunge pool residences</p>
+          </div>
+          <div class="tower glass">
+            <p class="tower__name">Tower B</p>
+            <p class="tower__size">6,228 – 6,996 sq ft</p>
+            <p class="tower__note">Spacious 4 BHK residences</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section id="highlights" class="section section--tint">
+    <div class="container">
+      <header class="section__head" appReveal>
+        <p class="eyebrow">Highlights</p>
+        <h2 class="section__title">Designed to be lived in, not just looked at.</h2>
+      </header>
+
+      <div class="features">
+        @for (feature of features; track feature.title; let i = $index) {
+          <article class="feature" [class.feature--wide]="i === 0 || i === 4" appReveal [revealDelay]="(i % 3) * 100">
+            <img [src]="feature.image" [alt]="feature.title" loading="lazy" />
+            <div class="feature__body glass">
+              <h3>{{ feature.title }}</h3>
+              <p>{{ feature.text }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Clubhouse -->
+  <section id="clubhouse" class="section">
+    <div class="container club">
+      <div class="club__hero" appReveal>
+        <img src="images/amaris_club.webp" alt="The sculpted brick clubhouse at Amaris" loading="lazy" />
+        <div class="club__badge glass">
+          <span [appCountUp]="81840"></span>
+          <small>sq ft of amenities</small>
+        </div>
+      </div>
+
+      <div class="club__copy">
+        <header appReveal>
+          <p class="eyebrow">The clubhouse</p>
+          <h2 class="section__title">Everything you need, a lift ride away.</h2>
+          <p>
+            The clubhouse spans several levels. The West Tower lobby has a reception lounge, party hall and business centre.
+            The East Tower is quieter, with indoor sports including a badminton court.
+          </p>
+        </header>
+
+        <div class="club__spaces">
+          @for (space of clubSpaces; track space.title; let i = $index) {
+            <figure class="space" appReveal [revealDelay]="i * 100">
+              <img [src]="space.image" [alt]="space.title" loading="lazy" />
+              <figcaption class="glass">
+                <strong>{{ space.title }}</strong>
+                <span>{{ space.text }}</span>
+              </figcaption>
+            </figure>
+          }
+        </div>
+
+        <ul class="chips" appReveal>
+          @for (amenity of clubAmenities; track amenity) {
+            <li class="chip glass">{{ amenity }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Master plan -->
+  <section id="master-plan" class="masterplan">
+    <img class="masterplan__bg" src="images/master_plan_big_bg.webp" alt="Amaris master plan" loading="lazy" />
+    <div class="container">
+      <div class="masterplan__card glass" appReveal>
+        <p class="eyebrow">Master plan</p>
+        <h2 class="section__title">Cars below, gardens above.</h2>
+        <p>
+          Four levels of multi-level parking with 840 dedicated bays leave the podium free of traffic.
+          Above them are a grand entry plaza, landscaped gardens, and wellness, fitness and sports zones.
+        </p>
+        <ul class="ticks">
+          <li>Grand entry plaza linking both towers</li>
+          <li>Traffic-free landscaped podium</li>
+          <li>4 basement levels, 840 parking bays</li>
+          <li>Smart layouts that balance views and privacy</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Residences -->
+  <section id="residences" class="section section--tint">
+    <div class="container">
+      <header class="section__head" appReveal>
+        <p class="eyebrow">Residences</p>
+        <h2 class="section__title">Four layouts. One standard.</h2>
+        <p>North-south and east-west facing 4 BHK layouts, each with a walk-in wardrobe in every bedroom.</p>
+      </header>
+
+      <div class="residences">
+        @for (unit of residences; track unit.size; let i = $index) {
+          <article class="residence glass" appReveal [revealDelay]="i * 90">
+            <p class="residence__tower">{{ unit.tower }}</p>
+            <p class="residence__size">{{ unit.size }}<small>sq ft</small></p>
+            <p class="residence__note">{{ unit.note }}</p>
+            <button class="btn btn--glass btn--block" type="button" (click)="selectUnit(unit.size)">Request floor plan</button>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section id="location" class="section">
+    <div class="container split">
+      <div class="split__copy" appReveal>
+        <p class="eyebrow">Location</p>
+        <h2 class="section__title">Minutes from where Hyderabad works.</h2>
+        <p>Set in the Financial District, Amaris is a short walk from global tech campuses and close to the city's best schools and hospitals.</p>
+
+        <div class="tabs glass" role="tablist" aria-label="Nearby places">
+          @for (group of locationGroups; track group.key) {
+            <button
+              type="button"
+              role="tab"
+              [class.active]="activeLocation() === group.key"
+              [attr.aria-selected]="activeLocation() === group.key"
+              (click)="activeLocation.set(group.key)"
+            >
+              {{ group.label }}
+            </button>
+          }
+        </div>
+
+        @for (group of [activeLocationGroup()]; track group.key) {
+          <ul class="places" role="tabpanel">
+            @for (place of group.items; track place.name; let i = $index) {
+              <li class="place" [style.--i]="i">
+                <span>{{ place.name }}</span>
+                <span class="place__distance">{{ place.distance }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+
+      <div class="split__media split__media--tall" appReveal [revealDelay]="120">
+        <iframe
+          title="Amaris location map"
+          src="https://maps.google.com/maps?q=Financial%20District%2C%20Nanakramguda%2C%20Hyderabad&z=14&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <img class="contact__bg" src="images/amaris_tower_mb.webp" alt="" aria-hidden="true" loading="lazy" />
+    <div class="container contact__grid">
+      <div class="contact__info" appReveal>
+        <p class="eyebrow">Visit us</p>
+        <h2 class="section__title">Book a private tour.</h2>
+        <p>Tell us when suits you. Our team is available from 9 AM to 9 PM.</p>
+        <dl class="contact__list">
+          <div><dt>Call / WhatsApp</dt><dd><a [href]="'tel:' + phoneLink">{{ phone }}</a></dd></div>
+          <div><dt>Email</dt><dd><a [href]="'mailto:' + email">{{ email }}</a></dd></div>
+          <div><dt>Sales office</dt><dd>{{ address }}</dd></div>
+          <div><dt>TS RERA No.</dt><dd>{{ rera }}</dd></div>
+        </dl>
+      </div>
+
+      <app-enquiry-form
+        appReveal
+        [revealDelay]="120"
+        project="Amaris"
+        [unitSizes]="unitSizes"
+        [(unit)]="contactUnit"
+        submitLabel="Send enquiry"
+      >
+        <h3>Request a callback</h3>
+      </app-enquiry-form>
+    </div>
+  </section>
+</main>
+
+<app-site-footer brand="AMARIS" by="by Kurra Infra" [rera]="rera" project="Amaris" />

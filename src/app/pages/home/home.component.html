@@ -1,0 +1,66 @@
+<app-site-header brand="KURRA INFRA" by="Luxury residences" ctaLabel="Contact us" [showProjectsLink]="false" />
+
+<main id="top" class="home">
+  <section class="home__intro container">
+    <p class="eyebrow hero__anim" style="--d: 0.1s">Financial District · Hyderabad</p>
+    <h1 class="home__title hero__anim" style="--d: 0.25s">Choose your <em>residence</em>.</h1>
+    <p class="home__lead hero__anim" style="--d: 0.4s">
+      Two ultra-luxury 4 BHK developments by Kurra Infra in Nanakramguda. Select a project to explore it.
+    </p>
+  </section>
+
+  <section class="container projects" aria-label="Projects">
+    @for (project of projects; track project.slug; let i = $index) {
+      <a
+        class="project-card hero__anim"
+        [class.theme-kairos]="project.slug === 'kairos'"
+        [style.--d]="0.5 + i * 0.15 + 's'"
+        [routerLink]="['/', project.slug]"
+        [attr.aria-label]="'Explore ' + project.name"
+      >
+        <img class="project-card__img" [src]="project.image" [alt]="project.name" />
+        <div class="project-card__body glass">
+          <p class="project-card__status">{{ project.status }}</p>
+          <h2 class="project-card__name">{{ project.name }}</h2>
+          <p class="project-card__tagline">{{ project.tagline }}</p>
+
+          <dl class="project-card__facts">
+            @for (fact of project.facts; track fact.label) {
+              <div>
+                <dt>{{ fact.label }}</dt>
+                <dd>{{ fact.value }}</dd>
+              </div>
+            }
+          </dl>
+
+          <div class="project-card__foot">
+            <span class="project-card__sizes">{{ project.sizes }}</span>
+            <span class="project-card__cta">
+              Explore {{ project.name }}
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    }
+  </section>
+
+  <section id="contact" class="section home__contact">
+    <div class="container">
+      <div class="home__contact-card glass" appReveal>
+        <div>
+          <p class="eyebrow">Get in touch</p>
+          <h2 class="section__title">Not sure which one suits you?</h2>
+          <p>Talk to our team. We are available from 9 AM to 9 PM.</p>
+        </div>
+        <dl class="contact__list">
+          <div><dt>Call / WhatsApp</dt><dd><a [href]="'tel:' + phoneLink">{{ phone }}</a></dd></div>
+          <div><dt>Email</dt><dd><a [href]="'mailto:' + email">{{ email }}</a></dd></div>
+          <div><dt>Sales office</dt><dd>{{ address }}</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-site-footer brand="KURRA INFRA" by="Luxury residences" />

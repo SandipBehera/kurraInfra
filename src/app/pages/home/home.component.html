@@ -1,4 +1,4 @@
-<app-site-header brand="KURRA INFRA" by="Luxury residences" ctaLabel="Contact us" [showProjectsLink]="false" />
+<app-site-header ctaLabel="Contact us" [showProjectsLink]="false" />
 
 <main id="top" class="home">
   <section class="home__intro container">
@@ -55,12 +55,10 @@
         </div>
         <dl class="contact__list">
           <div><dt>Call / WhatsApp</dt><dd><a [href]="'tel:' + phoneLink">{{ phone }}</a></dd></div>
-          <div><dt>Email</dt><dd><a [href]="'mailto:' + email">{{ email }}</a></dd></div>
-          <div><dt>Sales office</dt><dd>{{ address }}</dd></div>
         </dl>
       </div>
     </div>
   </section>
 </main>
 
-<app-site-footer brand="KURRA INFRA" by="Luxury residences" />
+<app-site-footer />

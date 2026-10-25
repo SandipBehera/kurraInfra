@@ -9,10 +9,10 @@ import { NavLink } from '../data/company';
   template: `
     <header class="nav" [class.nav--scrolled]="scrolled() || solid()" [class.nav--open]="menuOpen()">
       <div class="nav__inner glass">
-        <a class="brand" href="#top" (click)="scrollTo('top', $event)" [attr.aria-label]="brand() + ', back to top'">
-          <span class="brand__name">{{ brand() }}</span>
-          @if (by()) {
-            <span class="brand__by">{{ by() }}</span>
+        <a class="brand" href="#top" (click)="scrollTo('top', $event)" aria-label="Back to top">
+          <img class="brand__logo" src="images/kurra_infra_logo.svg" alt="Kurra Infra" width="126" height="73" />
+          @if (brand()) {
+            <span class="brand__name">{{ brand() }}</span>
           }
         </a>
 
@@ -54,8 +54,8 @@ import { NavLink } from '../data/company';
   `,
 })
 export class SiteHeaderComponent {
-  readonly brand = input.required<string>();
-  readonly by = input('');
+  /** Project name shown beside the Kurra Infra logo; omit on company-level pages. */
+  readonly brand = input('');
   readonly links = input<NavLink[]>([]);
   readonly ctaLabel = input('Book a visit');
   readonly showProjectsLink = input(true);

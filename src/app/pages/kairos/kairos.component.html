@@ -1,4 +1,4 @@
-<app-site-header brand="KAIROS" by="by Kurra Infra" [links]="navLinks" ctaLabel="Register interest" [solid]="true" />
+<app-site-header brand="KAIROS" [links]="navLinks" ctaLabel="Register interest" [solid]="true" />
 
 <main id="top">
   <!-- Hero: the banner artwork already carries the name and sizes, so it is shown uncropped. -->
@@ -133,8 +133,6 @@
         <p>Leave your details and our team will share launch details, pricing and floor plans as soon as they are ready.</p>
         <dl class="contact__list">
           <div><dt>Call / WhatsApp</dt><dd><a [href]="'tel:' + phoneLink">{{ phone }}</a></dd></div>
-          <div><dt>Email</dt><dd><a [href]="'mailto:' + email">{{ email }}</a></dd></div>
-          <div><dt>Sales office</dt><dd>{{ address }}</dd></div>
         </dl>
       </div>
 
@@ -152,4 +150,4 @@
   </section>
 </main>
 
-<app-site-footer brand="KAIROS" by="by Kurra Infra" project="Kairos" />
+<app-site-footer brand="KAIROS" project="Kairos" />

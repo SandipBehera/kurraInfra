@@ -8,9 +8,9 @@ import { whatsappLink } from '../data/company';
     <footer class="footer">
       <div class="container footer__inner">
         <div class="brand">
-          <span class="brand__name">{{ brand() }}</span>
-          @if (by()) {
-            <span class="brand__by">{{ by() }}</span>
+          <img class="brand__logo" src="images/kurra_infra_logo.svg" alt="Kurra Infra" width="126" height="73" loading="lazy" />
+          @if (brand()) {
+            <span class="brand__name">{{ brand() }}</span>
           }
         </div>
         <p class="footer__legal">
@@ -20,7 +20,7 @@ import { whatsappLink } from '../data/company';
           *Prices are indicative. All visuals are artistic impressions for illustration only, and nothing on this site
           is a legal offer.
         </p>
-        <p class="footer__copy">© Kurra Infra {{ year }}</p>
+        <p class="footer__copy">© Keyon Properties  {{ year }}</p>
       </div>
     </footer>
 
@@ -35,8 +35,8 @@ import { whatsappLink } from '../data/company';
   `,
 })
 export class SiteFooterComponent {
-  readonly brand = input.required<string>();
-  readonly by = input('');
+  /** Project name shown beside the Kurra Infra logo; omit on company-level pages. */
+  readonly brand = input('');
   readonly rera = input('');
   /** Project name to mention in the prefilled WhatsApp message. */
   readonly project = input('');

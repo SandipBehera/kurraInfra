@@ -1,4 +1,4 @@
-<app-site-header brand="AMARIS" by="by Kurra Infra" [links]="navLinks" />
+<app-site-header brand="AMARIS" [links]="navLinks" />
 
 <main id="top">
   <!-- Hero -->
@@ -247,8 +247,6 @@
         <p>Tell us when suits you. Our team is available from 9 AM to 9 PM.</p>
         <dl class="contact__list">
           <div><dt>Call / WhatsApp</dt><dd><a [href]="'tel:' + phoneLink">{{ phone }}</a></dd></div>
-          <div><dt>Email</dt><dd><a [href]="'mailto:' + email">{{ email }}</a></dd></div>
-          <div><dt>Sales office</dt><dd>{{ address }}</dd></div>
           <div><dt>TS RERA No.</dt><dd>{{ rera }}</dd></div>
         </dl>
       </div>
@@ -267,4 +265,4 @@
   </section>
 </main>
 
-<app-site-footer brand="AMARIS" by="by Kurra Infra" [rera]="rera" project="Amaris" />
+<app-site-footer brand="AMARIS" [rera]="rera" project="Amaris" />

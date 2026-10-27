@@ -10,7 +10,7 @@ import { NavLink } from '../data/company';
     <header class="nav" [class.nav--scrolled]="scrolled() || solid()" [class.nav--open]="menuOpen()">
       <div class="nav__inner glass">
         <a class="brand" href="#top" (click)="scrollTo('top', $event)" aria-label="Back to top">
-          <img class="brand__logo" src="images/kurra_infra_logo.svg" alt="Kurra Infra" width="126" height="73" />
+          <img class="brand__logo" src="images/kurra_logo.jpeg" alt="Kurra Infra" width="126" height="73" />
           @if (brand()) {
             <span class="brand__name">{{ brand() }}</span>
           }

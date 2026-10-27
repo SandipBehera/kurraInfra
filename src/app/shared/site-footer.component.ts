@@ -9,7 +9,7 @@ import { FloatingActionsComponent } from './floating-actions.component';
     <footer class="footer">
       <div class="container footer__inner">
         <div class="brand">
-          <img class="brand__logo" src="images/kurra_infra_logo.svg" alt="Kurra Infra" width="126" height="73" loading="lazy" />
+          <img class="brand__logo" src="images/kurra_logo.jpeg" alt="Kurra Infra" width="126" height="73" loading="lazy" />
           @if (brand()) {
             <span class="brand__name">{{ brand() }}</span>
           }

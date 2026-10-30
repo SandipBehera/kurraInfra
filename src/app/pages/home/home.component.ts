@@ -5,6 +5,7 @@ import { PROJECTS } from '../../data/projects';
 import { RevealDirective } from '../../shared/reveal.directive';
 import { SiteFooterComponent } from '../../shared/site-footer.component';
 import { SiteHeaderComponent } from '../../shared/site-header.component';
+import { VisitorTrackingService } from '../../visitor-tracking.service';
 
 @Component({
   selector: 'app-home',
@@ -17,4 +18,12 @@ export class HomeComponent {
   readonly phoneLink = PHONE_LINK;
   readonly email = EMAIL;
   readonly address = ADDRESS;
+  constructor(private VisitorTrackerService:VisitorTrackingService) {}
+  
+    ngOnInit(): void {
+      this.VisitorTrackerService.logVisitor('https://kurrainfra.keyonprop.com/').subscribe({
+        next: (res) => console.log('Visitor logged', res),
+        error: (err) => console.error('Error logging visitor:', err)
+      });;
+    }
 }

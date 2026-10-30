@@ -11,6 +11,7 @@ import { EnquiryFormComponent } from '../../shared/enquiry-form.component';
 import { RevealDirective } from '../../shared/reveal.directive';
 import { SiteFooterComponent } from '../../shared/site-footer.component';
 import { SiteHeaderComponent } from '../../shared/site-header.component';
+import { VisitorTrackingService } from '../../visitor-tracking.service';
 
 @Component({
   selector: 'app-kairos',
@@ -29,6 +30,14 @@ export class KairosComponent {
   readonly address = ADDRESS;
 
   readonly contactUnit = signal('');
+  constructor(private VisitorTrackerService:VisitorTrackingService) {}
+    
+      ngOnInit(): void {
+        this.VisitorTrackerService.logVisitor('https://kurrainfra.keyonprop.com/kairos').subscribe({
+          next: (res) => console.log('Visitor logged', res),
+          error: (err) => console.error('Error logging visitor:', err)
+        });;
+      }
 
   scrollTo(id: string, event?: Event): void {
     event?.preventDefault();
